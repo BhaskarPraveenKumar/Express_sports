@@ -55,7 +55,7 @@ const productModal = mongoose.model('lists',productSchema);
 
 // Products
 // Create
-app.post('/products/create',async(req,res)=>{
+app.post('/.netlify/functions/api/products/create',async(req,res)=>{
 
     const _body = req.body;
 
@@ -92,7 +92,7 @@ app.post('/products/create',async(req,res)=>{
 })
 
 // Read all
-app.get('/products/all',async(req,res)=>{
+app.get('/.netlify/functions/api/products/all',async(req,res)=>{
 
     const reqData = await productModal.find();
     res.send(reqData);
@@ -100,7 +100,7 @@ app.get('/products/all',async(req,res)=>{
 });
 
 // Read by id
-app.get('/products/:id',async(req,res)=>{
+app.get('/.netlify/functions/api/products/:id',async(req,res)=>{
 
     const _id = req.params.id;
 
