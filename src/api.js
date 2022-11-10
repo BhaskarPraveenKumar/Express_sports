@@ -1,4 +1,5 @@
 // Imports
+const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 
@@ -110,6 +111,14 @@ app.get('/products/:id',async(req,res)=>{
 
 
 
-app.listen(8082,()=>{
-    console.log(`http://localhost:8082`);
-})
+//app.listen(8082,()=>{console.log(`http://localhost:8082`);})
+
+// new netlify way to start the server
+const handler = serverless(app);
+
+//we use this so the handler can use async (that mongosse uses)
+module.exports.handler = async (event, context)=> {
+    const result = await handler(event, context);
+// and here
+return result;
+};
